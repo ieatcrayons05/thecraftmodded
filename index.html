@@ -1,12 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Server</title>
+  <title>The Craft Releases</title>
+  <style>
+    /* ===== Design tokens: change colors and sizes here ===== */
+    :root {
+      --bg:        #A3A3A6;  /* page background + table cells */
+      --navy:      #1C2A38;  /* title, text, table frame */
+      --link:      #0E9BA8;  /* download links */
+      --link-hover:#0A7580;  /* download links on hover */
+
+      --font: Arial, Helvetica, sans-serif;
+      --title-size: 32px;
+      --text-size:  18px;
+      --cell-size:  18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 8px 8px 24px;
+      background: var(--bg);
+      color: var(--navy);
+      font-family: var(--font);
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: var(--title-size);
+      font-weight: 700;
+    }
+
+    .intro {
+      margin: 0 0 20px 2px;
+      font-size: var(--text-size);
+      line-height: 1.35;
+    }
+
+    /* ===== Releases table ===== */
+    .releases {
+      display: inline-grid;
+      grid-template-columns: auto auto auto;
+      grid-auto-rows: auto;
+      gap: 8px 10px;            /* row gap, column gap */
+      padding: 12px;
+      background: var(--navy);
+    }
+
+    .releases > * {
+      background: var(--bg);
+      font-size: var(--cell-size);
+      padding: 4px 6px;
+    }
+
+    /* Column headings (INSTANCE / DRAG & DROP) */
+    .heading {
+      color: var(--navy);
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* Empty top-left corner: covers the frame so the heading row looks notched */
+    .corner {
+      margin: -12px 0 0 -12px;  /* match .releases padding */
+    }
+
+    .date {
+      text-transform: uppercase;
+      min-width: 58px;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    .download {
+      display: block;
+      min-width: 150px;
+      color: var(--link);
+      text-decoration: none;
+      text-align: center;
+    }
+    .download:hover { color: var(--link-hover); text-decoration: underline; }
+
+    /* Blank cell (no file for that release) */
+    .blank { min-width: 150px; }
+  </style>
 </head>
 <body>
-  <h1>My Server</h1>
-  <p>Coming soon.</p>
+
+  <h1>The Craft Releases</h1>
+
+  <p class="intro">
+    If this is the first time installing the modpack download (INSTANCE)<br>
+    If you already have an existing instance download (DRAG &amp; DROP)
+  </p>
+
+  <div class="releases" id="releases">
+    <!-- Column headings (don't edit) -->
+    <span class="corner"></span>  <span class="heading">INSTANCE</span>  <span class="heading">DRAG &amp; DROP</span>
+
+    <!-- ===== RELEASES: one line per release, newest on top =====
+         Each line needs exactly 3 cells: date, instance, drag & drop.
+         No file for a column? Use  <span class="blank"></span>  instead of the link. -->
+    <span class="date">DATE</span>  <a class="download" href="#">Release Name</a>  <a class="download" href="#">Release Name</a>
+    <span class="date">DATE</span>  <span class="blank"></span>                  <a class="download" href="#">Release Name</a>
+    <span class="date">DATE</span>  <a class="download" href="#">Release Name</a>  <a class="download" href="#">Release Name</a>
+    <span class="date">DATE</span>  <a class="download" href="#">Release Name</a>  <span class="blank"></span>
+    <!-- ===== END RELEASES ===== -->
+  </div>
+
 </body>
 </html>
